@@ -5,7 +5,7 @@ import plotly.express as px
 
 data = pd.read_csv("munis.csv")
 
-st.title("Mi primera app")
+st.title("Mi primera aplicación")
 
 munis = data["entidad"].unique().tolist()
 
