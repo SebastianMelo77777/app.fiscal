@@ -2,8 +2,10 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
+import geopandas as gpd
 
 data = pd.read_csv("munis.csv")
+gdf = gpd.read_parquet("muns.parquet")
 
 st.title("Mi primera aplicación")
 
@@ -68,3 +70,13 @@ fig = px.treemap(fin, path=[px.Constant("Total"),
                             color_discrete_sequence=colores_personalizados2)
 
 st.plotly_chart(fig)
+
+# el mapa de dora 
+
+filtro2 = gdf[gdf["entidad"] == mun][["codigo_alt", "geometry"]]
+
+fig, ax = plt.subplots(1, 1)
+
+filtro2.plot(ax=ax)
+
+st.pyplot(fig)
